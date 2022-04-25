@@ -151,7 +151,9 @@ mvn spring-boot:run
 ```
 
 # Invoke API
-   
+
+Swagger: http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/harry-kart-controller
+
 Below is the sample Test API. To try against other payload replace the body field of the curl request.
 ```
 curl -X POST \
