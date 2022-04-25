@@ -123,3 +123,25 @@ The output must be a json document of this form:
 The application we provide has two rest endpoints accepting XML and returning JSON (http://localhost:8080/java/api/play and http://localhost:8080/kotlin/api/play), you can use any of them as entry point.
 
 When you are done, zip the project (without the target folder) and send it back to us. You can leave the .git folder if you want.
+
+
+### Build
+
+## Docker build
+The docker build command builds Docker images from a Dockerfile. Replace <IMAGENAME> with the actual docker image name. For example atg/harrykart
+docker build -t <IMAGENAME> . 
+
+## Maven build
+
+mvn install
+
+## Docker execute
+The docker run command must specify an <IMAGENAME> to derive the container from. <HOSTPORT> is the port of the host where the docker image is running
+docker run -p <HOSTPORT>:8080 <IMAGENAME>
+   
+
+## Maven build
+
+mvn spring-boot:run
+
+
