@@ -1,6 +1,10 @@
 package se.atg.service.harrykart.java.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class Participant {
     public final String name;
@@ -24,14 +28,18 @@ public class Participant {
         this.loopTimes.add(time);
     }
 
-    public List<Double> getLoopTimes(){
+    public List<Double> getLoopTimes() {
         return Collections.unmodifiableList(this.loopTimes);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Participant that = (Participant) o;
         return Objects.equals(name, that.name);
     }

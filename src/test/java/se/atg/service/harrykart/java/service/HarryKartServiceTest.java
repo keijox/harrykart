@@ -28,10 +28,10 @@ public class HarryKartServiceTest {
 
         // Then
         assertEquals(4, raceResults.size());
-        assertEquals("TIMETOBELUCKY",  raceResults.get(0).participant.name);
-        assertEquals("HERCULES BOKO",  raceResults.get(1).participant.name);
-        assertEquals("CARGO DOOR",     raceResults.get(2).participant.name);
-        assertEquals("WAIKIKI SILVIO", raceResults.get(3).participant.name);
+        assertEquals("TIMETOBELUCKY", raceResults.get(0).participant().name);
+        assertEquals("HERCULES BOKO", raceResults.get(1).participant().name);
+        assertEquals("CARGO DOOR", raceResults.get(2).participant().name);
+        assertEquals("WAIKIKI SILVIO", raceResults.get(3).participant().name);
     }
 
     @Test
@@ -44,10 +44,10 @@ public class HarryKartServiceTest {
 
         // Then
         assertEquals(4, raceResults.size());
-        assertEquals("WAIKIKI SILVIO", raceResults.get(0).participant.name);
-        assertEquals("TIMETOBELUCKY",  raceResults.get(1).participant.name);
-        assertEquals("HERCULES BOKO",  raceResults.get(2).participant.name);
-        assertEquals("CARGO DOOR",     raceResults.get(3).participant.name);
+        assertEquals("WAIKIKI SILVIO", raceResults.get(0).participant().name);
+        assertEquals("TIMETOBELUCKY", raceResults.get(1).participant().name);
+        assertEquals("HERCULES BOKO", raceResults.get(2).participant().name);
+        assertEquals("CARGO DOOR", raceResults.get(3).participant().name);
     }
 
     @Test
@@ -60,15 +60,15 @@ public class HarryKartServiceTest {
 
         // Then
         assertEquals(4, raceResults.size());
-        assertEquals("HERCULES BOKO",  raceResults.get(0).participant.name);
-        assertEquals("TIMETOBELUCKY",  raceResults.get(1).participant.name);
-        assertEquals("WAIKIKI SILVIO", raceResults.get(2).participant.name);
-        assertEquals("CARGO DOOR",     raceResults.get(3).participant.name);
+        assertEquals("HERCULES BOKO", raceResults.get(0).participant().name);
+        assertEquals("TIMETOBELUCKY", raceResults.get(1).participant().name);
+        assertEquals("WAIKIKI SILVIO", raceResults.get(2).participant().name);
+        assertEquals("CARGO DOOR", raceResults.get(3).participant().name);
     }
 
     private static HarryKartType loadXmlFile(String xmlPath) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(HarryKartType.class);
         return jaxbContext.createUnmarshaller()
-                .unmarshal(new StreamSource(new File(xmlPath)), HarryKartType.class).getValue();
+                          .unmarshal(new StreamSource(new File(xmlPath)), HarryKartType.class).getValue();
     }
 }

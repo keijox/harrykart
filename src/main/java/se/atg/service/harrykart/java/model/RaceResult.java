@@ -1,16 +1,12 @@
 package se.atg.service.harrykart.java.model;
 
-public class RaceResult {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public final Participant participant;
-    public final double totalRaceTime;
+public record RaceResult(Participant participant, double totalRaceTime) {
 
-    public RaceResult(Participant participant, double totalRaceTime) {
+    public RaceResult(@JsonProperty("participant") Participant participant, @JsonProperty("totalRaceTime") double totalRaceTime) {
         this.participant = participant;
         this.totalRaceTime = totalRaceTime;
     }
 
-    public double getTotalRaceTime() {
-        return totalRaceTime;
-    }
 }

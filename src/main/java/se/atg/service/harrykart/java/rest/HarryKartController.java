@@ -8,12 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.atg.service.harrykart.java.Converter;
 import se.atg.service.harrykart.java.model.HarryKartResult;
-import se.atg.service.harrykart.java.model.RaceConfig;
-import se.atg.service.harrykart.java.model.RaceResult;
 import se.atg.service.harrykart.java.service.HarryKartService;
 import se.atg.xml.model.HarryKartType;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/java/api")
@@ -27,10 +23,10 @@ public class HarryKartController {
     @PostMapping(path = "/play", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public HarryKartResult playHarryKart(@RequestBody HarryKartType harryKart) {
         // Convert HarryKartType XML into our own model, RaceConfig
-        RaceConfig raceConfig = Converter.convertToRaceConfig(harryKart);
+        var raceConfig = Converter.convertToRaceConfig(harryKart);
 
         // Perform the race
-        List<RaceResult> raceResults = service.performRace(raceConfig);
+        var raceResults = service.performRace(raceConfig);
 
         // Return sorted top list
         return Converter.convertToHarryKartResult(raceResults, TOP_LIST_SIZE);
