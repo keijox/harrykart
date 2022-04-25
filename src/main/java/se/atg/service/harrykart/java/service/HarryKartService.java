@@ -9,7 +9,6 @@ import se.atg.service.harrykart.java.model.RaceResult;
 import se.atg.service.harrykart.java.model.Speed;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -24,10 +23,9 @@ public class HarryKartService {
 
     public List<RaceResult> performRace(RaceConfig raceConfig) {
         // Prepare storage of speeds
-        Map<Participant, Speed> raceState = new HashMap<>();
-        raceConfig.getParticipants().forEach(
-                p -> raceState.put(p, Speed.of(p.baseSpeed.value()))
-        );
+        var raceState = raceConfig.getParticipants().stream()
+                                                      .collect(Collectors.toMap(
+                                                              participant -> participant, participant -> Speed.of(participant.baseSpeed.value())));
 
         // Perform race loops, store speeds
         IntStream.range(0, raceConfig.noOfLoops)
@@ -35,17 +33,18 @@ public class HarryKartService {
                  .map(Loop::of)
                  .forEach(finishedLoop ->
                                   raceConfig.getParticipants().forEach(
-                                          p -> {
-                                              Speed currentSpeed = raceState.get(p);
-                                              raceState.replace(p, currentSpeed.add(getSpeedChange(p, finishedLoop)));
-                                              p.addLoopTime(calculateLoopTime(raceState.get(p)));
+                                          participant -> {
+                                              var currentSpeed = raceState.get(participant);
+                                              raceState.replace(participant, currentSpeed.add(getSpeedChange(participant, finishedLoop)));
+                                              participant.addLoopTime(calculateLoopTime(raceState.get(participant)));
                                           }
                                   )
                  );
 
         // Collect sorted results as RaceResult
         return raceConfig.getParticipants().stream()
-                         .map(p -> new RaceResult(p, p.getLoopTimes().stream().mapToDouble(d -> d).sum()))
+                         .map(participant -> new RaceResult(participant,
+                                                            participant.getLoopTimes().stream().mapToDouble(d -> d).sum()))
                          .sorted(Comparator.comparingDouble(RaceResult::totalRaceTime))
                          .collect(Collectors.toList());
     }
