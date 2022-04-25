@@ -36,7 +36,7 @@ public class HarryKartAppTest {
     void useGetOnPostEndpointShouldNotBePossible() {
         when()
                 .get(harryKartApp)
-        .then()
+                .then()
                 .assertThat()
                 .statusCode(405);
     }
@@ -47,9 +47,9 @@ public class HarryKartAppTest {
         given()
                 .header("Content-Type", ContentType.XML)
                 .body(new File("src/main/resources/input_0.xml"))
-        .when()
+                .when()
                 .post(harryKartApp)
-        .then()
+                .then()
                 .assertThat()
                 .statusCode(200)
                 .and()

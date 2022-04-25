@@ -1,15 +1,16 @@
 package se.atg.service.harrykart.java.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
-public class Lane {
-    public final int number;
+public record Lane(int number) {
 
-    public static Lane of(int number){
+    public static Lane of(int number) {
         return new Lane(number);
     }
 
-    private Lane(int number) {
+    public Lane(@JsonProperty("number") int number) {
         this.number = number;
     }
 
@@ -20,16 +21,4 @@ public class Lane {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Lane lane = (Lane) o;
-        return number == lane.number;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(number);
-    }
 }
