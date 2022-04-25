@@ -125,11 +125,11 @@ The application we provide has two rest endpoints accepting XML and returning JS
 When you are done, zip the project (without the target folder) and send it back to us. You can leave the .git folder if you want.
 
 
-### Build
+# Build
 
 ## Docker build
 The docker build command builds Docker images from a Dockerfile. Replace <IMAGENAME> with the actual docker image name. For example atg/harrykart
-docker build -t <IMAGENAME> . 
+_docker build -t <IMAGENAME> . _
 
 ## Maven build
 
