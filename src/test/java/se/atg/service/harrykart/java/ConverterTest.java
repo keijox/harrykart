@@ -1,8 +1,19 @@
 package se.atg.service.harrykart.java;
 
 import org.junit.jupiter.api.Test;
-import se.atg.service.harrykart.java.model.*;
-import se.atg.xml.model.*;
+import se.atg.service.harrykart.java.model.HarryKartResult;
+import se.atg.service.harrykart.java.model.Lane;
+import se.atg.service.harrykart.java.model.Loop;
+import se.atg.service.harrykart.java.model.Participant;
+import se.atg.service.harrykart.java.model.RaceConfig;
+import se.atg.service.harrykart.java.model.RaceResult;
+import se.atg.service.harrykart.java.model.Speed;
+import se.atg.xml.model.HarryKartType;
+import se.atg.xml.model.LaneType;
+import se.atg.xml.model.LoopType;
+import se.atg.xml.model.ParticipantType;
+import se.atg.xml.model.PowerUpsType;
+import se.atg.xml.model.StartListType;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,8 +61,8 @@ public class ConverterTest {
         Participant participant = raceConfig.getParticipant(Lane.of(100));
         assertEquals("Pålle", participant.name);
         assertEquals(Speed.of(5), participant.baseSpeed);
-        assertEquals(7, participant.getPowerUp(Loop.of(8)).value);
-        assertEquals(9, participant.getPowerUp(Loop.of(9)).value);
+        assertEquals(7, participant.getPowerUp(Loop.of(8)).value());
+        assertEquals(9, participant.getPowerUp(Loop.of(9)).value());
     }
 
     @Test

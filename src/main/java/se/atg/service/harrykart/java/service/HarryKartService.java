@@ -1,9 +1,18 @@
 package se.atg.service.harrykart.java.service;
 
 import org.springframework.stereotype.Service;
-import se.atg.service.harrykart.java.model.*;
+import se.atg.service.harrykart.java.model.Loop;
+import se.atg.service.harrykart.java.model.Participant;
+import se.atg.service.harrykart.java.model.PowerUp;
+import se.atg.service.harrykart.java.model.RaceConfig;
+import se.atg.service.harrykart.java.model.RaceResult;
+import se.atg.service.harrykart.java.model.Speed;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -15,38 +24,39 @@ public class HarryKartService {
 
     public List<RaceResult> performRace(RaceConfig raceConfig) {
         // Prepare storage of speeds
-        Map<Participant, Speed> raceState = new HashMap<>();
+        var raceState = new HashMap<>();
         raceConfig.getParticipants().forEach(
-            p -> raceState.put(p, Speed.of(p.baseSpeed.value))
+                p -> raceState.put(p, new AtomicInteger(p.baseSpeed.value()))
         );
 
         // Perform race loops, store speeds
         IntStream.range(0, raceConfig.noOfLoops)
-            .boxed()
-            .map(Loop::of)
-            .forEach(finishedLoop ->
-                raceConfig.getParticipants().forEach(
-                    p -> {
-                        Speed currentSpeed = raceState.get(p);
-                        raceState.replace(p, currentSpeed.add(getSpeedChange(p, finishedLoop)));
-                        p.addLoopTime(calculateLoopTime(raceState.get(p)));
-                    }
-                )
-            );
+                 .boxed()
+                 .map(Loop::of)
+                 .forEach(finishedLoop ->
+                                  raceConfig.getParticipants().forEach(
+                                          p -> {
+                                              //saveLoopSpeed(p, speeds.get(p), finishedLoop);
+                                              var participantSpeed = (AtomicInteger) raceState.get(p);
+                                              participantSpeed.addAndGet(getSpeedChange(p, finishedLoop));
+                                              p.addLoopTime(calculateLoopTime(Speed.of(participantSpeed.get())));
+                                          }
+                                  )
+                 );
 
         // Collect sorted results as RaceResult
         return raceConfig.getParticipants().stream()
-            .map(p -> new RaceResult(p, p.getLoopTimes().stream().mapToDouble(d -> d).sum()))
-            .sorted(Comparator.comparingDouble(RaceResult::getTotalRaceTime))
-            .collect(Collectors.toList());
+                         .map(p -> new RaceResult(p, p.getLoopTimes().stream().mapToDouble(d -> d).sum()))
+                         .sorted(Comparator.comparingDouble(RaceResult::totalRaceTime))
+                         .collect(Collectors.toList());
     }
 
     private static int getSpeedChange(Participant p, Loop loop) {
-        return Optional.ofNullable(p.getPowerUp(loop)).orElse(NO_POWERUP).value;
+        return Optional.ofNullable(p.getPowerUp(loop)).orElse(NO_POWERUP).value();
     }
 
     private static double calculateLoopTime(Speed currentSpeed) {
-        return LOOP_LENGTH / currentSpeed.value;
+        return LOOP_LENGTH / currentSpeed.value();
     }
 
 }
