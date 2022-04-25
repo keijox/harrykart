@@ -1,5 +1,7 @@
 package se.atg.service.harrykart.java.rest;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +15,7 @@ import se.atg.xml.model.HarryKartType;
 
 @RestController
 @RequestMapping("/java/api")
+@OpenAPIDefinition(info = @Info(title = "HarryKart", version = "1.0", description = "HarryKart API"))
 public class HarryKartController {
 
     private static final int TOP_LIST_SIZE = 3;
