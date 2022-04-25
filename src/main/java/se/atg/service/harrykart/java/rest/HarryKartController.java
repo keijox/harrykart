@@ -45,7 +45,8 @@ public class HarryKartController {
                        @ApiResponse(description = "Public Response with race results", content = @Content(
                                schema = @Schema(implementation = HarryKartController.class)
                        )),
-                       @ApiResponse(responseCode = "404", description = "General exception on bad request")
+                       @ApiResponse(responseCode = "400", description = "General exception on bad request"),
+                       @ApiResponse(responseCode = "500", description = "Server Internal Error")
                })
     @PostMapping(path = "/play", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public HarryKartResult playHarryKart(@RequestBody HarryKartType harryKart) {
