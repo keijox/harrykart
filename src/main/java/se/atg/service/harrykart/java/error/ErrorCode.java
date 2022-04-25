@@ -1,22 +1,26 @@
 package se.atg.service.harrykart.java.error;
 
 
-
 //import io.swagger.annotations.ApiModelProperty;
 
 
 // TODO: Auto-generated Javadoc
+
 /**
  * This class shows a list of error codes and error messages for different exceptions which can occur.
  */
 public class ErrorCode {
 
-    /** The error code. */
-	//@ApiModelProperty(notes="It prints error code",example ="2000")
+    /**
+     * The error code.
+     */
+    //@ApiModelProperty(notes="It prints error code",example ="2000")
     private String errorCode;
-    
-    /** The error message. */
-	//@ApiModelProperty(notes="It prints error message",example ="Operation successfull")
+
+    /**
+     * The error message.
+     */
+    //@ApiModelProperty(notes="It prints error message",example ="Operation successfull")
     private String errorMessage;
 
     /**
@@ -39,8 +43,9 @@ public class ErrorCode {
     }
 
     /**
-     *returns a particular errorMessage corresponding to the
+     * returns a particular errorMessage corresponding to the
      * type of exception which has occured.
+     *
      * @return errorMessage returns the corresponding errorMessage
      */
     public String getErrorMessage() {
@@ -60,11 +65,11 @@ public class ErrorCode {
     /**
      * contains the list of exceptions with the error codes and error messages which can occur.
      *
-     * @param errorCode takes in the corresponding error code
+     * @param errorCode    takes in the corresponding error code
      * @param errorMessage takes in the corresponding error message
      */
     public ErrorCode(String errorCode, String errorMessage) {
-    	this.errorCode = errorCode;
+        this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
 
@@ -73,17 +78,17 @@ public class ErrorCode {
      */
     public static final ErrorCode SUCCESS = new ErrorCode("5000", "Operation successfully");
 
-    
-     /**
+
+    /**
      * The exception is thrown when there is an unknown error.
      */
     public static final ErrorCode UNKNOWN_EXCEPTION = new ErrorCode("9000", "Unknown error");
- 
-    
+
+
     /**
      * The exception is thrown when there is an unknown error.
      */
     public static final ErrorCode DIVIDE_BY_ZERO_EXCEPTION = new ErrorCode("9001", "Divide by zero error");
-    
+
 }
 

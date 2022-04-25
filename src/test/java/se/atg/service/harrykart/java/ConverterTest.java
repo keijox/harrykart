@@ -74,10 +74,11 @@ public class ConverterTest {
 
         HarryKartResult harryKartResult = Converter.convertToHarryKartResult(results, 2);
 
-        assertEquals(2, harryKartResult.getRankings().size());
-        assertEquals(1, harryKartResult.getRankings().get(0).position);
-        assertEquals("A", harryKartResult.getRankings().get(0).horse);
-        assertEquals(2, harryKartResult.getRankings().get(1).position);
-        assertEquals("B", harryKartResult.getRankings().get(1).horse);
+        var rankings = harryKartResult.getRankings();
+        assertEquals(2, rankings.size());
+        assertEquals(1, rankings.get(0).position);
+        assertEquals("A", rankings.get(0).horse);
+        assertEquals(2, rankings.get(1).position);
+        assertEquals("B", rankings.get(1).horse);
     }
 }

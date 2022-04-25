@@ -1,6 +1,13 @@
 package se.atg.service.harrykart.java;
 
-import se.atg.service.harrykart.java.model.*;
+import se.atg.service.harrykart.java.model.HarryKartResult;
+import se.atg.service.harrykart.java.model.Lane;
+import se.atg.service.harrykart.java.model.Loop;
+import se.atg.service.harrykart.java.model.Participant;
+import se.atg.service.harrykart.java.model.PowerUp;
+import se.atg.service.harrykart.java.model.RaceConfig;
+import se.atg.service.harrykart.java.model.RaceResult;
+import se.atg.service.harrykart.java.model.Speed;
 import se.atg.xml.model.HarryKartType;
 import se.atg.xml.model.ParticipantType;
 
@@ -19,8 +26,8 @@ public class Converter {
     public static HarryKartResult convertToHarryKartResult(List<RaceResult> raceResults, int maxRows) {
         HarryKartResult harryKartResult = new HarryKartResult();
         raceResults.stream()
-            .limit(maxRows)
-            .forEach(r -> harryKartResult.addRanking(harryKartResult.getRankings().size()+1, r.participant().name));
+                   .limit(maxRows)
+                   .forEach(r -> harryKartResult.addRanking(harryKartResult.getRankings().size() + 1, r.participant().name));
         return harryKartResult;
     }
 

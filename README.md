@@ -1,9 +1,12 @@
 # Harry-Kart
+
 ## Description
+
 Harry-Kart in a special kind of horse racing.
 
 The horses participating have a base speed, they can run with that speed indefinitely.
-The track is a 1000 meters loop and is divided in lanes, each horse runs on a lane and every lane has the same length.   
+The track is a 1000 meters loop and is divided in lanes, each horse runs on a lane and every lane has the same
+length.   
 The horses run the first loop at their base speed but at the end of each loop they find a power-up or power-down.
 
 The power-ups/downs are numbers, negative or positive, representing how much the horse speeds up or slows down.
@@ -40,7 +43,6 @@ Your task is to compute the top 3 ranking.
 | 2nd      | HERCULES BOKO |
 | 3rd      | CARGO DOOR    |
 
-
 ## Example 2
 
 ### Input
@@ -70,7 +72,6 @@ Your task is to compute the top 3 ranking.
 | 1st      | WAIKIKI SILVIO|
 | 2nd      | TIMETOBELUCKY |
 | 3rd      | HERCULES BOKO |
-
 
 ## Example 3
 
@@ -103,13 +104,20 @@ Your task is to compute the top 3 ranking.
 | 3rd      | WAIKIKI SILVIO|
 
 ## Implementation
-The assignment has to be implemented as a spring boot application. Here you will find a boilerplate application implemented in both Java and Kotlin, choose whichever of the two you prefer. Feel free to delete the files you don't need.
-We have set the java version to 15, but you are not required to use Java 15. You can in fact set a lower Java version if you prefer, however Java 8 is minimum. Please note that the boilerplate uses the text blocks feature from Java 15 (so you might have to remove that piece of code first).
 
-The input is provided as an XML document (see examples ```/src/main/resources/input_0.xml```, ```/src/main/resources/input_1.xml``` and ```/src/main/resources/input_2.xml```),
+The assignment has to be implemented as a spring boot application. Here you will find a boilerplate application
+implemented in both Java and Kotlin, choose whichever of the two you prefer. Feel free to delete the files you don't
+need.
+We have set the java version to 15, but you are not required to use Java 15. You can in fact set a lower Java version if
+you prefer, however Java 8 is minimum. Please note that the boilerplate uses the text blocks feature from Java 15 (so
+you might have to remove that piece of code first).
+
+The input is provided as an XML document (see examples ```/src/main/resources/input_0.xml```
+, ```/src/main/resources/input_1.xml``` and ```/src/main/resources/input_2.xml```),
 in case you need it we provide the XML schema for it (```/src/main/resources/input.xsd```)
 
 The output must be a json document of this form:
+
 ```json
 {
    "ranking": [
@@ -120,39 +128,52 @@ The output must be a json document of this form:
 }
 ```
 
-The application we provide has two rest endpoints accepting XML and returning JSON (http://localhost:8080/java/api/play and http://localhost:8080/kotlin/api/play), you can use any of them as entry point.
+The application we provide has two rest endpoints accepting XML and returning JSON (http://localhost:8080/java/api/play
+and http://localhost:8080/kotlin/api/play), you can use any of them as entry point.
 
-When you are done, zip the project (without the target folder) and send it back to us. You can leave the .git folder if you want.
-
+When you are done, zip the project (without the target folder) and send it back to us. You can leave the .git folder if
+you want.
 
 # Build
 
 ## Prerequisite
+
 Java Version 17
 
 ## Docker build
-The docker build command builds Docker images from a Dockerfile. Replace <IMAGENAME> with the actual docker image name. For example atg/harrykart
+
+The docker build command builds Docker images from a Dockerfile. Replace <IMAGENAME> with the actual docker image name.
+For example atg/harrykart
+
 ```
    docker build -t <IMAGENAME> . 
 ```
+
 ## Maven build
+
 ```
 mvn install
 ```
+
 ## Docker execute
-The docker run command must specify an <IMAGENAME> to derive the container from. <HOSTPORT> is the port of the host where the docker image is running
+
+The docker run command must specify an <IMAGENAME> to derive the container from. <HOSTPORT> is the port of the host
+where the docker image is running
+
 ```
    docker run -p <HOSTPORT>:8080 <IMAGENAME>
 ```
 
 ## Maven execute
+
 ```
 mvn spring-boot:run
 ```
 
 # Invoke API
-   
+
 Below is the sample Test API. To try against other payload replace the body field of the curl request.
+
 ```
 curl -X POST \
   http://localhost:8080/java/api/play \
@@ -199,6 +220,6 @@ curl -X POST \
 
 ```
 
-
 # Swagger UI
+
 http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
