@@ -15,6 +15,7 @@
         <kotlin.compiler.jvmTarget>15</kotlin.compiler.jvmTarget>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <restassured.version>4.2.0</restassured.version>
+        <start-class>se.atg.service.harrykart.java.HarryKartApp</start-class>
     </properties>
 
     <dependencyManagement>
@@ -81,6 +82,20 @@
 
     <build>
         <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <mainClass>se.atg.service.harrykart.java.HarryKartApp</mainClass>
+            </configuration>
+            <executions>
+      <execution>
+      <goals>
+         <goal>repackage</goal>
+      </goals>
+      </execution>
+   </executions>
+        </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
