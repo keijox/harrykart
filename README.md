@@ -130,7 +130,6 @@ When you are done, zip the project (without the target folder) and send it back 
 ## Prerequisite
 Java Version 17
 
-
 ## Docker build
 The docker build command builds Docker images from a Dockerfile. Replace <IMAGENAME> with the actual docker image name. For example atg/harrykart
 ```
@@ -196,7 +195,8 @@ curl -X POST \
             <lane number="4">15</lane>
         </loop>
     </powerUps>
-</harryKart>
+</harryKart>'
+
 ```
 
 
