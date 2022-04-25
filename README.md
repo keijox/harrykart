@@ -143,8 +143,53 @@ The docker run command must specify an <IMAGENAME> to derive the container from.
    docker run -p <HOSTPORT>:8080 <IMAGENAME>
 ```
 
-## Maven build
+## Maven execute
 ```
 mvn spring-boot:run
 ```
 
+# Invoke API
+```
+curl -X POST \
+  http://localhost:8080/java/api/play \
+  -H 'content-type: application/xml' \
+  -d '<harryKart>
+    <numberOfLoops>3</numberOfLoops>
+    <startList>
+        <participant>
+            <lane>1</lane>
+            <name>TIMETOBELUCKY</name>
+            <baseSpeed>10</baseSpeed>
+        </participant>
+        <participant>
+            <lane>2</lane>
+            <name>CARGO DOOR</name>
+            <baseSpeed>10</baseSpeed>
+        </participant>
+        <participant>
+            <lane>3</lane>
+            <name>HERCULES BOKO</name>
+            <baseSpeed>10</baseSpeed>
+        </participant>
+        <participant>
+            <lane>4</lane>
+            <name>WAIKIKI SILVIO</name>
+            <baseSpeed>10</baseSpeed>
+        </participant>
+    </startList>
+    <powerUps>
+        <loop number="1">
+            <lane number="1">6</lane>
+            <lane number="2">10</lane>
+            <lane number="3">4</lane>
+            <lane number="4">0</lane>
+        </loop>
+        <loop number="2">
+            <lane number="1">0</lane>
+            <lane number="2">-10</lane>
+            <lane number="3">5</lane>
+            <lane number="4">15</lane>
+        </loop>
+    </powerUps>
+</harryKart>
+```
