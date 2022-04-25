@@ -149,6 +149,8 @@ mvn spring-boot:run
 ```
 
 # Invoke API
+   
+Below is the sample Test API. To try against other payload replace the body field of the curl request.
 ```
 curl -X POST \
   http://localhost:8080/java/api/play \
