@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Converter {
 
-    public static RaceConfig convertToRaceConfig(HarryKa1rtType harryKart) {
+    public static RaceConfig convertToRaceConfig(HarryKartType harryKart) {
         Map<Lane, Map<Loop, PowerUp>> powerups = new HashMap<>();
         harryKart.getPowerUps().getLoop().forEach(
             loopType ->
@@ -21,7 +21,7 @@ public class Converter {
                         powerups.putIfAbsent(lane, new HashMap<>());
                         powerups.get(lane).put(Loop.of(loopType.getNumber()), PowerUp.of(laneType.getValue()));
                     }
-                );
+                )
         );
         Map<Lane, Participant> participants = new HashMap<>();
         harryKart.getStartList().getParticipant().forEach(
