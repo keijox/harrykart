@@ -11,8 +11,8 @@ import se.atg.service.harrykart.java.model.Speed;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -24,9 +24,9 @@ public class HarryKartService {
 
     public List<RaceResult> performRace(RaceConfig raceConfig) {
         // Prepare storage of speeds
-        var raceState = new HashMap<>();
+        Map<Participant, Speed> raceState = new HashMap<>();
         raceConfig.getParticipants().forEach(
-                p -> raceState.put(p, new AtomicInteger(p.baseSpeed.value()))
+                p -> raceState.put(p, Speed.of(p.baseSpeed.value))
         );
 
         // Perform race loops, store speeds
@@ -36,10 +36,9 @@ public class HarryKartService {
                  .forEach(finishedLoop ->
                                   raceConfig.getParticipants().forEach(
                                           p -> {
-                                              //saveLoopSpeed(p, speeds.get(p), finishedLoop);
-                                              var participantSpeed = (AtomicInteger) raceState.get(p);
-                                              participantSpeed.addAndGet(getSpeedChange(p, finishedLoop));
-                                              p.addLoopTime(calculateLoopTime(Speed.of(participantSpeed.get())));
+                                              Speed currentSpeed = raceState.get(p);
+                                              raceState.replace(p, currentSpeed.add(getSpeedChange(p, finishedLoop)));
+                                              p.addLoopTime(calculateLoopTime(raceState.get(p)));
                                           }
                                   )
                  );
@@ -56,7 +55,7 @@ public class HarryKartService {
     }
 
     private static double calculateLoopTime(Speed currentSpeed) {
-        return LOOP_LENGTH / currentSpeed.value();
+        return LOOP_LENGTH / currentSpeed.value;
     }
 
 }
