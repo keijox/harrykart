@@ -10,6 +10,10 @@ public class Speed {
         return new Speed(value);
     }
 
+    public Speed add(int increment) {
+        return new Speed(this.value + increment);
+    }
+
     private Speed(int value) {
         this.value = value;
     }
