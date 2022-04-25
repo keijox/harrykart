@@ -64,4 +64,50 @@ public class HarryKartAppTest {
                 .body("ranking[2].horse", equalTo("CARGO DOOR"));
     }
 
+    @Test
+    @DisplayName("Test race #2")
+    void testRace2() {
+        given()
+                .header("Content-Type", ContentType.XML)
+                .body(new File("src/main/resources/input_1.xml"))
+                .when()
+                .post(harryKartApp)
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .and()
+                .header("Content-Type", ContentType.JSON.toString())
+                .and()
+                .body("ranking.size()", equalTo(3))
+                .body("ranking[0].position", equalTo(1))
+                .body("ranking[0].horse", equalTo("WAIKIKI SILVIO"))
+                .body("ranking[1].position", equalTo(2))
+                .body("ranking[1].horse", equalTo("TIMETOBELUCKY"))
+                .body("ranking[2].position", equalTo(3))
+                .body("ranking[2].horse", equalTo("HERCULES BOKO"));
+    }
+
+    @Test
+    @DisplayName("Test race #3")
+    void testRace3() {
+        given()
+                .header("Content-Type", ContentType.XML)
+                .body(new File("src/main/resources/input_2.xml"))
+                .when()
+                .post(harryKartApp)
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .and()
+                .header("Content-Type", ContentType.JSON.toString())
+                .and()
+                .body("ranking.size()", equalTo(3))
+                .body("ranking[0].position", equalTo(1))
+                .body("ranking[0].horse", equalTo("HERCULES BOKO"))
+                .body("ranking[1].position", equalTo(2))
+                .body("ranking[1].horse", equalTo("TIMETOBELUCKY"))
+                .body("ranking[2].position", equalTo(3))
+                .body("ranking[2].horse", equalTo("WAIKIKI SILVIO"));
+    }
+
 }
