@@ -3,7 +3,7 @@ package se.atg.service.harrykart.java.error;
 /**
  * Custom ATG Exception class.
  */
-public class AtgException extends Exception {
+public class Exception extends java.lang.Exception {
 
 	/** The error code. */
 	private String errorCode;
@@ -16,7 +16,7 @@ public class AtgException extends Exception {
 	 *
 	 * @param e the e
 	 */
-	public AtgException(Throwable e) {
+	public Exception(Throwable e) {
 		super(e);
 	}
 
@@ -27,7 +27,7 @@ public class AtgException extends Exception {
 	 * @param errorMessage Error message
 	 * @param e            Generic exception
 	 */
-	public AtgException(String errorCode, String errorMessage, Exception e) {
+	public Exception(String errorCode, String errorMessage, java.lang.Exception e) {
 		super(e);
 		this.errorCode = errorCode;
 		this.errorMessage = errorMessage;
@@ -40,7 +40,7 @@ public class AtgException extends Exception {
 	 * @param e     the e
 	 */
 
-	public AtgException(AtgErrorCode error, Throwable e) {
+	public Exception(ErrorCode error, Throwable e) {
 		super(e);
 		this.errorCode = error.getErrorCode();
 		this.errorMessage = error.getErrorMessage();

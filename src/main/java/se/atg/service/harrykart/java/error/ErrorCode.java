@@ -9,7 +9,7 @@ package se.atg.service.harrykart.java.error;
 /**
  * This class shows a list of error codes and error messages for different exceptions which can occur.
  */
-public class AtgErrorCode {
+public class ErrorCode {
 
     /** The error code. */
 	//@ApiModelProperty(notes="It prints error code",example ="2000")
@@ -63,7 +63,7 @@ public class AtgErrorCode {
      * @param errorCode takes in the corresponding error code
      * @param errorMessage takes in the corresponding error message
      */
-    public AtgErrorCode(String errorCode, String errorMessage) {
+    public ErrorCode(String errorCode, String errorMessage) {
     	this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
@@ -71,19 +71,19 @@ public class AtgErrorCode {
     /**
      * The response code is used when the operation is successful.
      */
-    public static final AtgErrorCode SUCCESS = new AtgErrorCode("5000", "Operation successfully");
+    public static final ErrorCode SUCCESS = new ErrorCode("5000", "Operation successfully");
 
     
      /**
      * The exception is thrown when there is an unknown error.
      */
-    public static final AtgErrorCode UNKNOWN_EXCEPTION = new AtgErrorCode("9000", "Unknown error");
+    public static final ErrorCode UNKNOWN_EXCEPTION = new ErrorCode("9000", "Unknown error");
  
     
     /**
      * The exception is thrown when there is an unknown error.
      */
-    public static final AtgErrorCode DIVIDE_BY_ZERO_EXCEPTION = new AtgErrorCode("9001", "Divide by zero error");
+    public static final ErrorCode DIVIDE_BY_ZERO_EXCEPTION = new ErrorCode("9001", "Divide by zero error");
     
 }
 
