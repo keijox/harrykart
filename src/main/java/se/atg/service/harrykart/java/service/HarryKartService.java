@@ -26,7 +26,7 @@ public class HarryKartService {
         // Prepare storage of speeds
         Map<Participant, Speed> raceState = new HashMap<>();
         raceConfig.getParticipants().forEach(
-                p -> raceState.put(p, Speed.of(p.baseSpeed.value))
+                p -> raceState.put(p, Speed.of(p.baseSpeed.value()))
         );
 
         // Perform race loops, store speeds
@@ -55,7 +55,7 @@ public class HarryKartService {
     }
 
     private static double calculateLoopTime(Speed currentSpeed) {
-        return LOOP_LENGTH / currentSpeed.value;
+        return LOOP_LENGTH / currentSpeed.value();
     }
 
 }

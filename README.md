@@ -123,3 +123,75 @@ The output must be a json document of this form:
 The application we provide has two rest endpoints accepting XML and returning JSON (http://localhost:8080/java/api/play and http://localhost:8080/kotlin/api/play), you can use any of them as entry point.
 
 When you are done, zip the project (without the target folder) and send it back to us. You can leave the .git folder if you want.
+
+
+# Build
+
+
+## Docker build
+The docker build command builds Docker images from a Dockerfile. Replace <IMAGENAME> with the actual docker image name. For example atg/harrykart
+```
+   docker build -t <IMAGENAME> . 
+```
+## Maven build
+```
+mvn install
+```
+## Docker execute
+The docker run command must specify an <IMAGENAME> to derive the container from. <HOSTPORT> is the port of the host where the docker image is running
+```
+   docker run -p <HOSTPORT>:8080 <IMAGENAME>
+```
+
+## Maven execute
+```
+mvn spring-boot:run
+```
+
+# Invoke API
+   
+Below is the sample Test API. To try against other payload replace the body field of the curl request.
+```
+curl -X POST \
+  http://localhost:8080/java/api/play \
+  -H 'content-type: application/xml' \
+  -d '<harryKart>
+    <numberOfLoops>3</numberOfLoops>
+    <startList>
+        <participant>
+            <lane>1</lane>
+            <name>TIMETOBELUCKY</name>
+            <baseSpeed>10</baseSpeed>
+        </participant>
+        <participant>
+            <lane>2</lane>
+            <name>CARGO DOOR</name>
+            <baseSpeed>10</baseSpeed>
+        </participant>
+        <participant>
+            <lane>3</lane>
+            <name>HERCULES BOKO</name>
+            <baseSpeed>10</baseSpeed>
+        </participant>
+        <participant>
+            <lane>4</lane>
+            <name>WAIKIKI SILVIO</name>
+            <baseSpeed>10</baseSpeed>
+        </participant>
+    </startList>
+    <powerUps>
+        <loop number="1">
+            <lane number="1">6</lane>
+            <lane number="2">10</lane>
+            <lane number="3">4</lane>
+            <lane number="4">0</lane>
+        </loop>
+        <loop number="2">
+            <lane number="1">0</lane>
+            <lane number="2">-10</lane>
+            <lane number="3">5</lane>
+            <lane number="4">15</lane>
+        </loop>
+    </powerUps>
+</harryKart>
+```
