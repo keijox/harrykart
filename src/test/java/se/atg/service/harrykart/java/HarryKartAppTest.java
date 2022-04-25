@@ -110,4 +110,30 @@ public class HarryKartAppTest {
                 .body("ranking[2].horse", equalTo("WAIKIKI SILVIO"));
     }
 
+    @Test
+    @DisplayName("Test bad input request parsing")
+    void testBadInputRequestParsing() {
+        given()
+                .header("Content-Type", ContentType.XML)
+                .body(new File("src/main/resources/input_bad_file.xml"))
+                .when()
+                .post(harryKartApp)
+                .then()
+                .assertThat()
+                .statusCode(400);
+    }
+
+    @Test
+    @DisplayName("Test bad input with no powerups")
+    void testBadInputRequestBlankPowerup() {
+        given()
+                .header("Content-Type", ContentType.XML)
+                .body(new File("src/main/resources/input_bad_with_no_powerup.xml"))
+                .when()
+                .post(harryKartApp)
+                .then()
+                .assertThat()
+                .statusCode(400);
+    }
+
 }
