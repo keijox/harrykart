@@ -129,8 +129,9 @@ When you are done, zip the project (without the target folder) and send it back 
 
 ## Docker build
 The docker build command builds Docker images from a Dockerfile. Replace <IMAGENAME> with the actual docker image name. For example atg/harrykart
-**docker build -t <IMAGENAME> . **
-
+```
+   docker build -t <IMAGENAME> . 
+```
 ## Maven build
 
 mvn install
